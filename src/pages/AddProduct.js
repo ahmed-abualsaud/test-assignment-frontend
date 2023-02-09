@@ -2,15 +2,14 @@ import Footer from "../layouts/Footer"
 import Header from "../layouts/Header"
 import Link from "../components/Link"
 import Input from "../components/Input"
+import Toast from "../components/Toast"
 import Button from "../components/Button"
 import Select from "../components/Select"
 import useProductType from "../hooks/useProductType"
-import Toast from "../components/Toast"
-import useAddProduct from "../hooks/useAddProduct"
+import { applyFormValidation } from "../utils/validator"
 
 const AddProduct = () => {
 
-    const { onClickSaveProduct } = useAddProduct()
     const { productType, setProductType } = useProductType()
 
     return (
@@ -19,11 +18,11 @@ const AddProduct = () => {
             <Toast />
 
             <Header text={"Product Add"} buttons={[
-                <Button text={"Save"} type={"light"} onClick={onClickSaveProduct} />,
+                <Button text={"Save"} type={"light"} onClick={() => applyFormValidation("#product_form", "#toast")} />,
                 <Link text={"Cancel"} type={"light"} to={"/"} />
             ]} />
 
-            <form className="col-lg-5 col-md-8 col-10">
+            <form id="#product_form" className="col-lg-5 col-md-8 col-10">
                 <Input id="#sku" inputClassName="col-8" labelClassName="col-2" text={"SKU"} type="text" validrules="required" />
                 <Input id="#name" inputClassName="col-8" labelClassName="col-2" text={"Name"} type="text" validrules="required" />
                 <Input id="#price" inputClassName="col-8" labelClassName="col-2" text={"Price ($)"} type="number" validrules="required|number" />
