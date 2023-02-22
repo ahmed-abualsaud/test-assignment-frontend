@@ -24,3 +24,16 @@ export function arrayMergeUnique(array1, array2) {
 
     return Array.from(new Set(array1.concat(array2)))
 }
+
+export function arrayIsEmpty(array) {
+
+    if (!Array.isArray(array)) {
+        return false;
+    }
+
+    if (array.length === 0) {
+        return true;
+    }
+
+    return false;
+}

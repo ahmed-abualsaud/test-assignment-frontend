@@ -1,12 +1,12 @@
 import Card from './Card'
 
 
-const CardGroup = ({cardElements}) => {
+const CardGroup = ({constElements, varElements}) => {
   return (
 
     <div className="row">
-        {Array.from({ length: 12 }).map((_val, _idx) => (
-            <Card  elements={cardElements}/>
+        {Array.from(varElements).map((cardElement) => (
+            <Card constElements={constElements}  varElements={cardElement}/>
         ))}
     </div>
   )

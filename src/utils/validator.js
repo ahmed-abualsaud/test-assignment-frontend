@@ -1,4 +1,4 @@
-import { isNull, randomString, arrayMergeUnique } from "../utils/helper"
+import { isNull, randomString, arrayMergeUnique, arrayIsEmpty } from "../utils/helper"
 import { getElement, createElement, removeElement, fadeElementOut, getElementsWithAttribute } from "../utils/dom"
 
 function addErrorMessage(errorMessage, errorMessages) {
@@ -13,7 +13,7 @@ function validateElementValue(value, rules) {
     let errorMessages = []
 
     rules.forEach(rule => {
-        
+
         rule = rule.trim()
 
         if(rule === "required") {
@@ -26,7 +26,7 @@ function validateElementValue(value, rules) {
 
         if(rule.includes("in[")) {
             const inValues = rule.substring(3, rule.length - 1).split(",")
-            if (!inValues.includes(value)) addErrorMessage("Please, provide the data of indicated type", errorMessages) 
+            if (!inValues.includes(value)) addErrorMessage("Please, submit required data", errorMessages) 
         }
     })
 
@@ -99,12 +99,17 @@ function addToasts(toastContainerID, contents) {
     })
 }
 
-function showValidationError(toastID, errorMessages) {
+export function showValidationError(toastID, errorMessages) {
 
     addToasts(toastID, errorMessages)
 }
 
 export function applyFormValidation(formID, toastID) {
 
-    showValidationError(toastID, validatFormInputs(formID))
+    let errorMessages = validatFormInputs(formID)
+    showValidationError(toastID, errorMessages)
+    if (arrayIsEmpty(errorMessages)) {
+        return true
+    }
+    return false
 }
