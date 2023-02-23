@@ -58,7 +58,7 @@ function addToasts(toastContainerID, contents) {
     
         toastElement = createElement("div")
         toastElement.setAttribute("id", toastID)
-        toastElement.setAttribute("style", "dborder-radius:5px")
+        toastElement.setAttribute("style", "border-bottom-left-radius:55px;border-top-left-radius:0;z-index:1000;")
         toastElement.setAttribute("class", "alert alert-danger d-flex justify-content-between")
         toastContainer.style.display = "block"
 
@@ -68,7 +68,7 @@ function addToasts(toastContainerID, contents) {
             attributes: [
                 {
                     name: "class",
-                    value: "m-0 me-2"
+                    value: "m-0 mx-4"
                 }
             ]
         }))

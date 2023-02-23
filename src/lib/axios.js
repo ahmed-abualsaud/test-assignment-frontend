@@ -51,4 +51,16 @@ const addProduct = async () => {
    return false
 }
 
-export { getAllProducts, addProduct }
+const deleteProductsByIDs = async (ids) => {
+
+    try {
+        const response = await api.delete("/delete-products", {data: qs.stringify({"ids": ids.join(",")}) })
+        if(response.data.status !== 200) {
+            showValidationError("#toast", [response.data.error[0]])
+        }
+    } catch (error) {
+        showValidationError("#toast", [error.message])
+    }
+}
+
+export { getAllProducts, addProduct, deleteProductsByIDs }

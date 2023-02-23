@@ -1,4 +1,42 @@
+/****************************************************************** CLASS ******************************************************************/
+
 .fade-out {
     opacity: 0;
     transition: opacity 1s ease;
 }
+
+.input {
+    height: 3.2rem
+}
+
+.page {
+    width: 80%;
+    height: 99.94vh;
+}
+
+/********************************************************************** ID **********************************************************************/
+
+#header {
+    height: 80px;
+    padding-top: 2rem;
+}
+
+#header > div {
+    margin-right: -3px;
+}
+
+#card {
+    height: 207px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+#checkbox {
+    width: 18px; 
+    height: 18px;
+}
+
+#adjust-width {
+    width: 98.6%;
+}
+

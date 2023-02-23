@@ -2,7 +2,6 @@ import Link from "../components/Link"
 import Footer from "../layouts/Footer"
 import Header from "../layouts/Header"
 import Input from "../components/Input"
-import Toast from "../components/Toast"
 import Button from "../components/Button"
 import Select from "../components/Select"
 import { addProduct } from "../lib/axios"
@@ -11,7 +10,7 @@ import useProductType from "../hooks/useProductType"
 
 const AddProduct = () => {
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
     const { productType, setProductType } = useProductType()
 
     const addNewProduct = async () => {
@@ -22,13 +21,11 @@ const AddProduct = () => {
     }
 
     return (
-        <div className="d-flex flex-column m-auto" style={{ width: "80%", height: "99.94vh" }}>
-
-            <Toast />
+        <div className="d-flex flex-column m-auto page">
 
             <Header text={"Product Add"} buttons={[
-                <Button text={"Save"} type={"light"} onClick={() => addNewProduct()} />,
-                <Link text={"Cancel"} type={"light"} to={"/"} />
+                <Button key={0} text={"Save"} type={"light"} onClick={() => addNewProduct()} />,
+                <Link key={1} text={"Cancel"} type={"light"} to={"/"} />
             ]} />
 
             <form id="#product_form" className="col-lg-5 col-md-8 col-10">

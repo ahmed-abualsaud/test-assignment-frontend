@@ -3,7 +3,7 @@ import HR from "../components/HR"
 const Footer = () => {
 
     return (
-        <footer className="p-0 mt-auto mx-auto" style={{width: "98.6%"}}>
+        <footer id="adjust-width" className="p-0 mt-auto mx-auto">
             <div className="mt-4 mb-0">
                 <HR />
                 <div className="d-flex justify-content-around align-items-center py-3">

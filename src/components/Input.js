@@ -5,7 +5,7 @@ const Input = ({ id, name, text, type, inputClassName, labelClassName, validrule
             <label className={`fs-4 p-0 mx-2 ${labelClassName}`}>{text}</label>
 
             <div className={inputClassName}>
-                <input type={type} name={name} className="form-control border-dark" id={id} validrules={validrules} style={{height: "3.2rem"}}></input>
+                <input type={type} name={name} className="form-control border-dark input" id={id} validrules={validrules}></input>
             </div>
         </div>
     )

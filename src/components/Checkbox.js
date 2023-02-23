@@ -1,8 +1,14 @@
-const Checkbox = (className) => {
+const Checkbox = ({ className, onCheck }) => {
+
+    const onChange = (event) => {
+        if(event.target.checked){
+            onCheck()
+        }
+    }
 
     return (
         <div className="m-3">
-            <input className={`form-check-input m-0 ${className}`} type="checkbox" id="checkboxNoLabel" style={{width: "18px", height: "18px"}}></input>
+            <input className={`form-check-input m-0 ${className}`} type="checkbox" id="checkbox" onChange={onChange}></input>
         </div>
     )
 }

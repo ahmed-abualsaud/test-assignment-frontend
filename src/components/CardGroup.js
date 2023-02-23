@@ -1,12 +1,12 @@
 import Card from './Card'
 
 
-const CardGroup = ({constElements, varElements}) => {
+const CardGroup = ({elements, checkBoxOnCheck}) => {
   return (
 
     <div className="row">
-        {Array.from(varElements).map((cardElement) => (
-            <Card constElements={constElements}  varElements={cardElement}/>
+        {Array.from(elements).map((cardElement, index) => (
+            <Card key={index} elements={cardElement} checkBoxOnCheck={checkBoxOnCheck} />
         ))}
     </div>
   )
