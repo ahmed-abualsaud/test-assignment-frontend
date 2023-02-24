@@ -12,17 +12,17 @@ const getAllProducts = async () => {
     try {
         const response = await api.get("/")
         if(response.data.status === 200) return response.data.data
-        showValidationError("#toast", [response.data.error[0]])
+        showValidationError("toast", [response.data.error[0]])
 
     } catch (error) {
-        showValidationError("#toast", [error.message])
+        showValidationError("toast", [error.message])
     }
 }
 
 const addProduct = async () => {
 
-    if (applyFormValidation("#product_form", "#toast")) {
-        const validationElements = getElementsWithAttribute("#product_form", "validrules")
+    if (applyFormValidation("product_form", "toast")) {
+        const validationElements = getElementsWithAttribute("product_form", "validrules")
 
         let data = {}
 
@@ -31,20 +31,16 @@ const addProduct = async () => {
         })
 
         try {
-            const response = await api.post(
-                "/add-product", 
-                qs.stringify(data), 
-                {headers: { "Content-Type": "application/x-www-form-urlencoded"}}
-            )
+            const response = await api.delete("/delete-products", {data: qs.stringify({"ids": ids.join(",")}) })
 
             if(response.data.status !== 200) {
-                showValidationError("#toast", [response.data.error[0]])
+                showValidationError("toast", [response.data.error[0]])
                 return false
             }
             return true
 
         } catch (error) {
-            showValidationError("#toast", [error.message])
+            showValidationError("toast", [error.message])
             return false
         }
    }
@@ -54,12 +50,17 @@ const addProduct = async () => {
 const deleteProductsByIDs = async (ids) => {
 
     try {
-        const response = await api.delete("/delete-products", {data: qs.stringify({"ids": ids.join(",")}) })
+        const response = await api.post(
+            "/delete-products", 
+            qs.stringify({"ids": ids.join(",")}), 
+            {headers: { "Content-Type": "application/x-www-form-urlencoded"}}
+        )
+
         if(response.data.status !== 200) {
-            showValidationError("#toast", [response.data.error[0]])
+            showValidationError("toast", [response.data.error[0]])
         }
     } catch (error) {
-        showValidationError("#toast", [error.message])
+        showValidationError("toast", [error.message])
     }
 }
 

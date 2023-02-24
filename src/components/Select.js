@@ -8,7 +8,7 @@ const Select = ({ id, name, text, values, onChange, validrules }) => {
                 <select id={id} name={name} className="form-select form-select-lg border-dark" onClick={onChange} defaultValue="selectDefault" validrules={validrules}>
                     <option key={0} value={"selectDefault"}>Select Product Type</option>
                     {Array.from(values).map((value, index) => (
-                        <option key={index+1} value={value.toString()}>{value}</option>
+                        <option key={index+1} value={value.toString()}>{(value === "DVD")? "DVD-disc": value}</option>
                     ))}
                 </select>
             </div>

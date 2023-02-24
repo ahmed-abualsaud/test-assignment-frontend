@@ -13,24 +13,35 @@ const ListProducts = () => {
     const [products, setProducts] = useState([])
     const { setProductID, deleteProducts } = useDeleteProducts()
 
-    useEffect(() => {
-      const retrieveProducts = async () => {
-        const allProducts = await getAllProducts()
-        if (allProducts) setProducts(allProducts)
-      }
+    const retrieveProducts = async () => {
+      const allProducts = await getAllProducts()
+      if (allProducts) setProducts(allProducts)
+    }
+    
+    if (isInitialMount.current) {
+      retrieveProducts()
+      isInitialMount.current = false
+    }
 
-      if (isInitialMount.current) {
-        isInitialMount.current = false
-      } else {
-        retrieveProducts()
-        isInitialMount.current = true
-      }
-    }, [products])
+    // useEffect(() => {
+    //   const retrieveProducts = async () => {
+    //     const allProducts = await getAllProducts()
+    //     if (allProducts) setProducts(allProducts)
+    //   }
+
+    //   if (isInitialMount.current) {
+    //     isInitialMount.current = false
+    //   } else {
+    //     retrieveProducts()
+    //     isInitialMount.current = true
+    //   }
+    // }, [products])
 
     const deleteSelectedProducts = async () => {
       const deleted = await deleteProducts()
       if (deleted) {
         setProducts([])
+        isInitialMount.current = true
       }
     }
 
@@ -38,8 +49,8 @@ const ListProducts = () => {
         <div className="d-flex flex-column m-auto page" >
 
             <Header text={"Product List"} buttons={[
-                <Link key={0} text={"Add"} type={"light"} to={"add-product"} />,
-                <Button id="#delete-product-btn" key={1} text={"Mass Delete"} type={"danger"} onClick={() => deleteSelectedProducts()} />
+                <Link key={0} text={"ADD"} type={"light"} to={"add-product"} />,
+                <Button id="delete-product-btn" key={1} text={"MASS DELETE"} type={"danger"} onClick={() => deleteSelectedProducts()} />
             ]} />
 
             <CardGroup elements={products} checkBoxOnCheck={setProductID} />

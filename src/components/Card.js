@@ -15,7 +15,7 @@ const Card = ({ elements, checkBoxOnCheck }) => {
           {
             elements["type"] === "Book"? 
             <div className="text-center h5 m-1">Weight: {elements["weight"]} Kg</div>: 
-            elements["type"] === "DVD-disc"?
+            elements["type"] === "DVD"?
             <div className="text-center h5 m-1">Size: {elements["size"]} MB</div>: 
             <div className="text-center h5 m-1">Dimensions: {elements["height"]}x{elements["width"]}x{elements["length"]}</div>
           }
